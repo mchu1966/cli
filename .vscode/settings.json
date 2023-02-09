@@ -1,0 +1,27 @@
+{
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "editor.scrollBeyondLastLine": false,
+    "editor.renderWhitespace": "all",
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+    },
+    "go.toolsEnvVars": {
+        "GO111MODULE": "on",
+    },
+    "git.confirmSync": false,
+    "go.useLanguageServer": true,
+    "editor.semanticTokenColorCustomizations.enabled": true,
+    "workbench.startupEditor": "none",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Default Dark+",
+    "editor.occurrencesHighlight": true,
+    "editor.selectionHighlight": true,
+    "files.exclude": {
+        "**/.git": false
+    },
+    "window.zoomLevel": -1,
+}

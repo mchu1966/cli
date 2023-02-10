@@ -8,6 +8,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	ModeUpper = iota + 1
+	ModeLower
+	ModeUnderscoreToUpperCamelCase
+	ModeUnderscoreToLowerCamelCase
+	ModeCamelCaseToUnderscore
+)
+
 var desc = strings.Join([]string{
 	"mode can be",
 	"1: to upper case",
@@ -19,45 +27,40 @@ var desc = strings.Join([]string{
 var str string
 var mode int8
 var file string
-
-func init() {
-	wordCmd.Flags().StringVarP(&str, "str", "s", "", "the target word")
-	// TODO
-	wordCmd.Flags().StringVarP(&file, "file", "f", "", "the target file")
-	wordCmd.Flags().Int8VarP(&mode, "mode", "m", 0, "word conversion mode")
-}
-
 var wordCmd = &cobra.Command{
 	Use:   "word",
 	Short: "word format conversion",
 	Long:  desc,
-	Run: func(cmd *cobra.Command, args []string) {
-		var content string
-		switch mode {
-		case ModeUpper:
-			content = word.ToUpper(str)
-		case ModeLower:
-			content = word.ToLower(str)
-		case ModeUnderscoreToUpperCamelCase:
-			content = word.UnderscoreToUpperCamelCase(str)
-		case ModeUnderscoreToLowerCamelCase:
-			content = word.UnderscoreToLowerCamelCase(str)
-		case ModeCamelCaseToUnderscore:
-			content = word.CamelCaseToUnderscore(str)
-		default:
-			log.Fatalf("mode is not supported, --help word for usage")
-		}
-
-		log.Printf("Output: %s", content)
-	},
+	Run:   WordCmdRun,
 }
 
-const (
-	ModeUpper = iota + 1
-	ModeLower
-	ModeUnderscoreToUpperCamelCase
-	ModeUnderscoreToLowerCamelCase
-	ModeCamelCaseToUnderscore
-)
+func init() {
+	WordCmdFlags(wordCmd)
+}
 
-func init() {}
+func WordCmdFlags(cmd *cobra.Command) {
+	cmd.Flags().StringVarP(&str, "str", "s", "", "the target word")
+	// TODO
+	// wordCmd.Flags().StringVarP(&file, "file", "f", "", "the target file")
+	cmd.Flags().Int8VarP(&mode, "mode", "m", 0, "word conversion mode")
+}
+
+func WordCmdRun(cmd *cobra.Command, args []string) {
+	var content string
+	switch mode {
+	case ModeUpper:
+		content = word.ToUpper(str)
+	case ModeLower:
+		content = word.ToLower(str)
+	case ModeUnderscoreToUpperCamelCase:
+		content = word.UnderscoreToUpperCamelCase(str)
+	case ModeUnderscoreToLowerCamelCase:
+		content = word.UnderscoreToLowerCamelCase(str)
+	case ModeCamelCaseToUnderscore:
+		content = word.CamelCaseToUnderscore(str)
+	default:
+		log.Fatalf("mode is not supported, word --help for usage")
+	}
+
+	cmd.Println(content)
+}

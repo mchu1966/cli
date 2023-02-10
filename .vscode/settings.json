@@ -17,7 +17,7 @@
     "workbench.startupEditor": "none",
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Default Dark+ Experimental",
     "editor.occurrencesHighlight": true,
     "editor.selectionHighlight": true,
     "files.exclude": {

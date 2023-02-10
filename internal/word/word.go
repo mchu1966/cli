@@ -3,6 +3,9 @@ package word
 import (
 	"strings"
 	"unicode"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func ToUpper(s string) string {
@@ -16,7 +19,7 @@ func ToLower(s string) string {
 // foo_bar -> FooBar
 func UnderscoreToUpperCamelCase(s string) string {
 	s = strings.Replace(s, "_", " ", -1)
-	s = strings.Title(s)
+	s = cases.Title(language.Und).String(s)
 	return strings.Replace(s, " ", "", -1)
 }
 

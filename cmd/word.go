@@ -35,10 +35,10 @@ var wordCmd = &cobra.Command{
 }
 
 func init() {
-	WordCmdFlags(wordCmd)
+	SetWordCmdFlags(wordCmd)
 }
 
-func WordCmdFlags(cmd *cobra.Command) {
+func SetWordCmdFlags(cmd *cobra.Command) {
 	cmd.Flags().StringVarP(&str, "str", "s", "", "the target word")
 	// TODO
 	// wordCmd.Flags().StringVarP(&file, "file", "f", "", "the target file")

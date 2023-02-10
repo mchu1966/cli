@@ -43,7 +43,7 @@ func TestWordCmd(t *testing.T) {
 		Use: "word",
 		Run: cmd.WordCmdRun,
 	}
-	cmd.WordCmdFlags(root)
+	cmd.SetWordCmdFlags(root)
 
 	for _, tc := range tt {
 		out, err := execute(t, root, tc.args...)

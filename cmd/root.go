@@ -7,11 +7,14 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {},
 }
 
+func init() {
+	CmdAddCommand(rootCmd, []*cobra.Command{wordCmd, timeCmd})
+}
+
 func Execute() {
 	cobra.CheckErr(rootCmd.Execute())
 }
 
-func init() {
-	rootCmd.AddCommand(wordCmd)
-	rootCmd.AddCommand(timeCmd)
+func CmdAddCommand(parent *cobra.Command, cmd []*cobra.Command) {
+	parent.AddCommand(cmd...)
 }

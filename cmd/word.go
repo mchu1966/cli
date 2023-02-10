@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/mchu1966/cli/internal/word"
+	"github.com/mchu1966/cli/pkg/helpers"
 	"github.com/spf13/cobra"
 )
 
@@ -69,9 +70,7 @@ func WordCmdRun(cmd *cobra.Command, args []string) {
 		cmd.Println(content)
 	} else if file != "" {
 		readFile, err := os.Open(file)
-		if err != nil {
-			cmd.PrintErr(err)
-		}
+		helpers.Check(cmd, err)
 		defer readFile.Close()
 
 		fileScanner := bufio.NewScanner(readFile)
@@ -97,5 +96,10 @@ func WordCmdRun(cmd *cobra.Command, args []string) {
 			}
 			cmd.Println(line)
 		}
+
+		// w := bufio.NewWriter(des)
+		// n4, err := w.WriteString("buffered\n")
+		// helpers.check(cmd, err)
+		// fmt.Printf("wrote %d bytes\n", n4)
 	}
 }
